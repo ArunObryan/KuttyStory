@@ -1,0 +1,324 @@
+/* ============================================
+   Kanmani — Color Palette
+   White, Blue, Pink, Lavender
+   ============================================ */
+
+:root {
+  /* White */
+  --color-white: #FFFFFF;
+  --color-off-white: #FAFBFC;
+  --color-snow: #F8F9FA;
+
+  /* Blue */
+  --color-soft-blue: #B8D4E8;
+  --color-light-blue: #D4E8F5;
+  --color-sky-blue: #A8C8E8;
+  --color-deep-blue: #5B7FA3;
+
+  /* Pink */
+  --color-soft-pink: #F5D5E0;
+  --color-pink: #E8B4C4;
+  --color-blush-pink: #F0D0D8;
+
+  /* Lavender */
+  --color-lavender: #E6E0F0;
+  --color-soft-lavender: #D8D0E8;
+  --color-light-lavender: #EDE8F5;
+
+  /* Text & overlays */
+  --color-charcoal: #4A4A4A;
+  --overlay-dark: rgba(91, 127, 163, 0.4);
+
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+
+  --transition: 0.4s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-off-white);
+  color: var(--color-charcoal);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Hero
+   ============================================ */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-light-lavender) 40%, var(--color-soft-pink) 70%, var(--color-soft-blue) 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, var(--color-sky-blue) 0%, transparent 40%),
+              radial-gradient(circle at 70% 30%, var(--color-lavender) 0%, transparent 30%);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, var(--color-off-white) 100%);
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  animation: fadeInUp 1s ease;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-charcoal);
+  opacity: 0.85;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn {
+  padding: 0.875rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-primary {
+  background: var(--color-deep-blue);
+  color: var(--color-white);
+  box-shadow: 0 4px 20px rgba(91, 127, 163, 0.35);
+  animation: fadeInUp 1s ease 0.4s both;
+}
+
+.btn-primary:hover {
+  background: var(--color-pink);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(232, 180, 196, 0.4);
+}
+
+/* ============================================
+   Story Chapters
+   ============================================ */
+
+.story {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.chapter {
+  padding: 4rem 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.chapter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chapter-light {
+  background: var(--color-white);
+  margin: 0 -2rem;
+  padding: 4rem 2rem;
+  border-radius: 1rem;
+}
+
+.chapter-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.chapter-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-pink);
+  margin-bottom: 1rem;
+}
+
+.chapter h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  margin-bottom: 2rem;
+}
+
+/* ============================================
+   Poetry Blocks
+   ============================================ */
+
+.poetry-block {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--color-light-lavender) 0%, var(--color-white) 100%);
+  border-radius: 1rem;
+  border-left: 4px solid var(--color-pink);
+  box-shadow: 0 4px 20px rgba(232, 180, 196, 0.2);
+}
+
+.poetry {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-deep-blue);
+  line-height: 2;
+}
+
+/* ============================================
+   Media Blocks
+   ============================================ */
+
+.media-block {
+  margin: 2rem 0;
+}
+
+.image-placeholder,
+.video-placeholder {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(91, 127, 163, 0.15);
+}
+
+.image-placeholder img,
+.video-placeholder video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.placeholder-fallback {
+  min-height: 200px;
+  background: linear-gradient(135deg, var(--color-soft-lavender) 0%, var(--color-soft-blue) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-deep-blue);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.audio-player {
+  padding: 1.5rem;
+  background: var(--color-white);
+  border-radius: 1rem;
+  border: 1px solid var(--color-lavender);
+}
+
+.audio-player audio {
+  width: 100%;
+  height: 48px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+.footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--color-pink);
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   Animations (for future use)
+   ============================================ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* ============================================
+   Music Toggle
+   ============================================ */
+
+.music-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--color-lavender);
+  background: var(--color-white);
+  color: var(--color-deep-blue);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(91, 127, 163, 0.2);
+  transition: all var(--transition);
+}
+
+.music-toggle:hover {
+  background: var(--color-soft-pink);
+  border-color: var(--color-pink);
+  transform: scale(1.05);
+}
+
+.music-toggle.muted .music-on { display: none; }
+.music-toggle.muted .music-off { opacity: 0.5; }
+.music-toggle:not(.muted) .music-off { display: none; }

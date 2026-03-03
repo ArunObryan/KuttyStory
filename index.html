@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanmani — A Love Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="site-wrapper">
+    <!-- Hero / Intro -->
+    <header class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Kanmani</h1>
+        <p class="hero-subtitle">A story told in whispers, laughter, and life</p>
+        <button class="btn btn-primary" id="start-story">Begin the Story</button>
+      </div>
+    </header>
+
+    <!-- Story Sections -->
+    <main class="story">
+      <!-- Chapter 1: The Beginning -->
+      <section class="chapter" id="chapter-1">
+        <div class="chapter-content">
+          <span class="chapter-label">Chapter One</span>
+          <h2>The First Glance</h2>
+          <div class="poetry-block">
+            <p class="poetry">
+              In a room full of noise,<br>
+              your silence was the only sound I heard.<br>
+              One look—and the world turned<br>
+              from grey to gold.
+            </p>
+          </div>
+          <div class="media-block">
+            <div class="image-placeholder">
+              <!-- Add your image: assets/images/placeholder-1.jpg -->
+              <img src="assets/images/placeholder-1.jpg" alt="A moment of first meeting" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="placeholder-fallback" style="display:none">Add your image to assets/images/</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chapter 2: Laughter -->
+      <section class="chapter chapter-light" id="chapter-2">
+        <div class="chapter-content">
+          <span class="chapter-label">Chapter Two</span>
+          <h2>Your Laughter</h2>
+          <div class="poetry-block">
+            <p class="poetry">
+              They say love is serious.<br>
+              But you taught me<br>
+              that love is the sound of your laugh<br>
+              at 3 AM over nothing at all.
+            </p>
+          </div>
+          <div class="media-block">
+            <div class="audio-player">
+              <audio controls>
+                <source src="assets/audio/song.mp3" type="audio/mpeg">
+                Your browser does not support audio.
+              </audio>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chapter 3: Life Together -->
+      <section class="chapter" id="chapter-3">
+        <div class="chapter-content">
+          <span class="chapter-label">Chapter Three</span>
+          <h2>Life With You</h2>
+          <div class="poetry-block">
+            <p class="poetry">
+              Not the grand gestures—<br>
+              but the mornings, the coffee, the quiet.<br>
+              Life, in its simplest form,<br>
+              is you beside me.
+            </p>
+          </div>
+          <div class="media-block">
+            <div class="video-placeholder">
+              <video controls poster="assets/images/video-poster.jpg">
+                <source src="assets/video/moment.mp4" type="video/mp4">
+                Your browser does not support video.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chapter 4: Forever -->
+      <section class="chapter chapter-light" id="chapter-4">
+        <div class="chapter-content">
+          <span class="chapter-label">The End — Or the Beginning</span>
+          <h2>Kanmani</h2>
+          <div class="poetry-block">
+            <p class="poetry">
+              You are my Kanmani—<br>
+              my precious one.<br>
+              In every laugh, every tear,<br>
+              every ordinary day,<br>
+              I choose you.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Made with love</p>
+    </footer>
+  </div>
+
+  <!-- Background music (add your file to assets/audio/background.mp3) -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/audio/background.mp3" type="audio/mpeg">
+    <source src="assets/audio/background.ogg" type="audio/ogg">
+  </audio>
+
+  <!-- Music toggle - fixed position -->
+  <button class="music-toggle" id="music-toggle" title="Toggle background music" aria-label="Toggle background music">
+    <span class="music-icon music-on">♪</span>
+    <span class="music-icon music-off" aria-hidden="true">♪</span>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

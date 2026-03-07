@@ -1,33 +1,37 @@
 /* ============================================
    Kanmani — Color Palette
-   White, Blue, Pink, Lavender
+   Purple Love Story (from romantic couple image)
    ============================================ */
 
 :root {
-  /* White */
+  /* White & light */
   --color-white: #FFFFFF;
   --color-off-white: #FAFBFC;
   --color-snow: #F8F9FA;
 
-  /* Blue */
-  --color-soft-blue: #B8D4E8;
-  --color-light-blue: #D4E8F5;
-  --color-sky-blue: #A8C8E8;
-  --color-deep-blue: #5B7FA3;
+  /* Lavender & purple */
+  --color-pale-lavender: #E8E0F5;
+  --color-light-lavender: #EDE8F5;
+  --color-lavender: #9B8BB8;
+  --color-soft-lavender: #D8D0E8;
+  --color-magenta-purple: #B8A9C9;
+  --color-indigo: #5C4B6B;
+  --color-deep-purple: #3D2C4A;
 
   /* Pink */
   --color-soft-pink: #F5D5E0;
   --color-pink: #E8B4C4;
   --color-blush-pink: #F0D0D8;
 
-  /* Lavender */
-  --color-lavender: #E6E0F0;
-  --color-soft-lavender: #D8D0E8;
-  --color-light-lavender: #EDE8F5;
+  /* Blue */
+  --color-pale-blue: #D4E8F5;
+  --color-soft-blue: #B8D4E8;
+  --color-cool-teal: #7B9BA8;
+  --color-deep-blue: #5B7FA3;
 
   /* Text & overlays */
   --color-charcoal: #4A4A4A;
-  --overlay-dark: rgba(91, 127, 163, 0.4);
+  --overlay-dark: rgba(61, 44, 74, 0.4);
 
   --font-heading: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Lora', Georgia, serif;
@@ -41,63 +45,114 @@
   padding: 0;
 }
 
+.site-wrapper {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-body);
-  background: var(--color-off-white);
+  background: var(--color-deep-purple);
   color: var(--color-charcoal);
   line-height: 1.7;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* ============================================
-   Hero
+   Book — 10 pages with page-turn effect
    ============================================ */
 
-.hero {
+.book {
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  perspective: 2000px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.book-page {
   min-height: 100vh;
+  height: 100vh;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-light-lavender) 40%, var(--color-soft-pink) 70%, var(--color-soft-blue) 100%);
-  overflow: hidden;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
 }
 
-.hero::before {
+.book-page.turned {
+  transform: rotateY(-95deg);
+  z-index: 0;
+  pointer-events: none;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Alternate page backgrounds */
+.book-page:nth-child(odd) {
+  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-pale-lavender) 50%, var(--color-soft-pink) 100%);
+}
+
+.book-page:nth-child(even) {
+  background: linear-gradient(135deg, var(--color-pale-lavender) 0%, var(--color-white) 50%, var(--color-soft-lavender) 100%);
+}
+
+.book-page::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 70%, var(--color-sky-blue) 0%, transparent 40%),
-              radial-gradient(circle at 70% 30%, var(--color-lavender) 0%, transparent 30%);
-  opacity: 0.15;
+  background: radial-gradient(circle at 30% 70%, var(--color-pale-blue) 0%, transparent 40%),
+              radial-gradient(circle at 70% 30%, var(--color-magenta-purple) 0%, transparent 30%);
+  opacity: 0.12;
   pointer-events: none;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 0%, var(--color-off-white) 100%);
-  opacity: 0.3;
+.page-inner {
+  position: relative;
+  max-width: 600px;
+  padding: 3rem 2rem;
+  text-align: center;
+  z-index: 2;
 }
 
-.hero-content {
-  position: relative;
-  text-align: center;
-  padding: 2rem;
-  z-index: 2;
+.page-cover {
+  padding: 4rem 2rem;
+}
+
+.page-cover .hero-title {
+  margin-bottom: 0.5rem;
+}
+
+.page-cover .hero-subtitle {
+  margin-bottom: 2rem;
+}
+
+.page-placeholder {
+  color: var(--color-lavender);
+  font-style: italic;
+  margin-top: 2rem;
 }
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 10vw, 6rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 400;
-  color: var(--color-deep-blue);
+  color: var(--color-indigo);
   letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
   animation: fadeInUp 1s ease;
 }
 
@@ -105,7 +160,6 @@ body {
   font-size: 1.25rem;
   color: var(--color-charcoal);
   opacity: 0.85;
-  margin-bottom: 2rem;
   animation: fadeInUp 1s ease 0.2s both;
 }
 
@@ -135,51 +189,21 @@ body {
 }
 
 .btn-primary {
-  background: var(--color-deep-blue);
+  background: var(--color-indigo);
   color: var(--color-white);
-  box-shadow: 0 4px 20px rgba(91, 127, 163, 0.35);
+  box-shadow: 0 4px 20px rgba(92, 75, 107, 0.35);
   animation: fadeInUp 1s ease 0.4s both;
 }
 
 .btn-primary:hover {
-  background: var(--color-pink);
+  background: var(--color-deep-purple);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(232, 180, 196, 0.4);
 }
 
 /* ============================================
-   Story Chapters
+   Page content (chapters)
    ============================================ */
-
-.story {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-}
-
-.chapter {
-  padding: 4rem 0;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.chapter.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.chapter-light {
-  background: var(--color-white);
-  margin: 0 -2rem;
-  padding: 4rem 2rem;
-  border-radius: 1rem;
-}
-
-.chapter-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
 
 .chapter-label {
   display: inline-block;
@@ -190,11 +214,11 @@ body {
   margin-bottom: 1rem;
 }
 
-.chapter h2 {
+.page-inner h2 {
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 400;
-  color: var(--color-deep-blue);
+  color: var(--color-indigo);
   margin-bottom: 2rem;
 }
 
@@ -205,9 +229,9 @@ body {
 .poetry-block {
   margin: 2rem 0;
   padding: 2rem;
-  background: linear-gradient(135deg, var(--color-light-lavender) 0%, var(--color-white) 100%);
+  background: linear-gradient(135deg, var(--color-pale-lavender) 0%, var(--color-white) 100%);
   border-radius: 1rem;
-  border-left: 4px solid var(--color-pink);
+  border-left: 4px solid var(--color-magenta-purple);
   box-shadow: 0 4px 20px rgba(232, 180, 196, 0.2);
 }
 
@@ -215,7 +239,7 @@ body {
   font-family: var(--font-heading);
   font-style: italic;
   font-size: 1.25rem;
-  color: var(--color-deep-blue);
+  color: var(--color-indigo);
   line-height: 2;
 }
 
@@ -231,7 +255,7 @@ body {
 .video-placeholder {
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(91, 127, 163, 0.15);
+  box-shadow: 0 8px 32px rgba(92, 75, 107, 0.15);
 }
 
 .image-placeholder img,
@@ -243,11 +267,11 @@ body {
 
 .placeholder-fallback {
   min-height: 200px;
-  background: linear-gradient(135deg, var(--color-soft-lavender) 0%, var(--color-soft-blue) 100%);
+  background: linear-gradient(135deg, var(--color-soft-lavender) 0%, var(--color-magenta-purple) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-deep-blue);
+  color: var(--color-indigo);
   font-style: italic;
   opacity: 0.7;
 }
@@ -265,18 +289,7 @@ body {
 }
 
 /* ============================================
-   Footer
-   ============================================ */
-
-.footer {
-  text-align: center;
-  padding: 3rem 2rem;
-  color: var(--color-pink);
-  font-size: 0.9rem;
-}
-
-/* ============================================
-   Animations (for future use)
+   Animations
    ============================================ */
 
 @keyframes float {
@@ -290,26 +303,85 @@ body {
 }
 
 /* ============================================
-   Music Toggle
+   Music Toggle & Volume
    ============================================ */
 
-.music-toggle {
+.music-controls {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.music-volume-panel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-white);
+  border-radius: 2rem;
+  border: 2px solid var(--color-lavender);
+  box-shadow: 0 4px 20px rgba(92, 75, 107, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+
+.music-controls:hover .music-volume-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.volume-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-pale-lavender);
+  color: var(--color-indigo);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.volume-btn:hover {
+  background: var(--color-pink);
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+.volume-level {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-indigo);
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.music-toggle {
   width: 48px;
   height: 48px;
   border-radius: 50%;
   border: 2px solid var(--color-lavender);
   background: var(--color-white);
-  color: var(--color-deep-blue);
+  color: var(--color-indigo);
   font-size: 1.25rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  box-shadow: 0 4px 20px rgba(91, 127, 163, 0.2);
+  box-shadow: 0 4px 20px rgba(92, 75, 107, 0.2);
   transition: all var(--transition);
 }
 
@@ -322,3 +394,254 @@ body {
 .music-toggle.muted .music-on { display: none; }
 .music-toggle.muted .music-off { opacity: 0.5; }
 .music-toggle:not(.muted) .music-off { display: none; }
+
+/* ============================================
+   Garden Walkway — Boy & Girl (Bruno Simon–inspired)
+   ============================================ */
+
+.garden-walkway {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  z-index: 100;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.garden-path {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(168, 184, 154, 0.15) 20%,
+    rgba(168, 184, 154, 0.4) 50%,
+    rgba(136, 160, 120, 0.5) 100%
+  );
+  border-top: 3px solid rgba(168, 184, 154, 0.6);
+}
+
+.garden-path::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 20px,
+    rgba(168, 184, 154, 0.2) 20px,
+    rgba(168, 184, 154, 0.2) 22px
+  );
+  opacity: 0.6;
+}
+
+.flower {
+  position: absolute;
+  font-size: 1.25rem;
+  opacity: 0.7;
+  animation: flowerSway 3s ease-in-out infinite;
+}
+.flower-1 { bottom: 15px; left: 15%; animation-delay: 0s; }
+.flower-2 { bottom: 20px; left: 50%; animation-delay: 0.5s; }
+.flower-3 { bottom: 18px; right: 15%; animation-delay: 1s; }
+@keyframes flowerSway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.walkers {
+  position: absolute;
+  bottom: 20px;
+  left: 20%;
+  height: 100px;
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+  justify-content: center;
+  transition: left 0.3s ease-out;
+}
+
+/* Walkers — GSAP handles animation; CSS sets transform-origin for SVG */
+.character-svg {
+  width: 50px;
+  height: 65px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+/* SVG limbs: transform-origin at joint (hip/shoulder) for GSAP rotation */
+.walker .leg-left { transform-origin: 22px 76px; transform-box: fill-box; }
+.walker .leg-right { transform-origin: 38px 76px; transform-box: fill-box; }
+.walker .arm-left { transform-origin: 14px 48px; transform-box: fill-box; }
+.walker .arm-right { transform-origin: 46px 48px; transform-box: fill-box; }
+.walker .body-group { transform-origin: 30px 40px; transform-box: fill-box; }
+
+/* ============================================
+   Let's Talk Section (Full Page)
+   ============================================ */
+
+.section-fullpage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.section-fullpage .page-inner {
+  text-align: center;
+}
+
+.talk-question {
+  font-size: 1.25rem;
+  color: var(--color-indigo);
+  margin-bottom: 1.5rem;
+}
+
+.talk-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-yes {
+  background: var(--color-pink);
+  color: var(--color-indigo);
+}
+
+.btn-yes:hover {
+  background: var(--color-blush-pink);
+  transform: translateY(-2px);
+}
+
+.btn-no {
+  background: var(--color-indigo);
+  color: var(--color-white);
+}
+
+.btn-no:hover {
+  background: var(--color-deep-purple);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   Popup Overlays
+   ============================================ */
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.popup-image-wrap.popped {
+  animation: imagePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.popup-image {
+  display: block;
+  max-width: 400px;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes imagePop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.popup-video-wrap video {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.popup-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-indigo);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.popup-close:hover {
+  background: var(--color-pink);
+}
+
+/* ============================================
+   Heart Shower (on Yes click)
+   ============================================ */
+
+.heart-shower {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1500;
+  overflow: hidden;
+}
+
+.heart-shower span {
+  position: absolute;
+  top: -30px;
+  color: var(--color-pink);
+  animation: heartFall linear forwards;
+  text-shadow: 0 0 8px rgba(232, 180, 196, 0.6);
+}
+
+.heart-shower span:nth-child(3n) { color: var(--color-magenta-purple); }
+.heart-shower span:nth-child(5n) { color: var(--color-blush-pink); }
+
+@keyframes heartFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+

@@ -1,11 +1,32 @@
 # Inspiration & References
 
+## Color Palette — Purple Love Story (from romantic couple image)
+
+| Color | Hex | Use |
+|-------|-----|-----|
+| **Bright white** | `#FFFFFF` | Light source, highlights |
+| **Pale lavender** | `#E8E0F5` | Soft backgrounds |
+| **Soft pink** | `#E8B4C4` | Warm accents |
+| **Magenta-purple** | `#B8A9C9` | Mid-tone backgrounds |
+| **Lavender** | `#9B8BB8` | Accents, blending |
+| **Indigo** | `#5C4B6B` | Headings, depth |
+| **Deep purple** | `#3D2C4A` | Shadows, emphasis |
+| **Cool blue / teal** | `#7B9BA8` | Contrast, subtle accents |
+| **Pale blue** | `#D4E8F5` | Light sections |
+
+---
+
 ## Portfolios to Reference
 
 ### Akshay Santhoshkumar
 - **URL:** https://akshaysanthoshkumar.vercel.app/
 - **Notes:** Good reference for Kanmani / interactive storytelling projects
 - **Tagline:** Full Stack 3D Software Developer
+
+### Bruno Simon
+- **URL:** https://bruno-simon.com/
+- **Notes:** Drive a 3D car through an interactive world. Three.js, WebGL/WebGPU, Rapier physics, Howler.js audio. Source code on GitHub (MIT). Music by Kounine (CC0).
+- **Tagline:** Creative developer — famous Three.js portfolio
 
 ---
 

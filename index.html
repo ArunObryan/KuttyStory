@@ -7,25 +7,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <div class="site-wrapper">
-    <!-- Hero / Intro -->
-    <header class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">Kanmani</h1>
-        <p class="hero-subtitle">A story told in whispers, laughter, and life</p>
-        <button class="btn btn-primary" id="start-story">Begin the Story</button>
-      </div>
-    </header>
+    <!-- Book container: 10 pages with page-turn effect -->
+    <div class="book" id="book">
+      <!-- Page 1: Cover -->
+      <section class="book-page page-1" data-page="1">
+        <div class="page-inner page-cover">
+          <h1 class="hero-title">Kanmani</h1>
+          <p class="hero-subtitle">Let me tell kutty story ...</p>
+          <button class="btn btn-primary" id="start-story">Begin the Story</button>
+        </div>
+      </section>
 
-    <!-- Story Sections -->
-    <main class="story">
-      <!-- Chapter 1: The Beginning -->
-      <section class="chapter" id="chapter-1">
-        <div class="chapter-content">
+      <!-- Page 2: Chapter 1 -->
+      <section class="book-page page-2" data-page="2">
+        <div class="page-inner">
           <span class="chapter-label">Chapter One</span>
           <h2>The First Glance</h2>
           <div class="poetry-block">
@@ -38,7 +37,6 @@
           </div>
           <div class="media-block">
             <div class="image-placeholder">
-              <!-- Add your image: assets/images/placeholder-1.jpg -->
               <img src="assets/images/placeholder-1.jpg" alt="A moment of first meeting" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="placeholder-fallback" style="display:none">Add your image to assets/images/</div>
             </div>
@@ -46,9 +44,9 @@
         </div>
       </section>
 
-      <!-- Chapter 2: Laughter -->
-      <section class="chapter chapter-light" id="chapter-2">
-        <div class="chapter-content">
+      <!-- Page 3: Chapter 2 -->
+      <section class="book-page page-3" data-page="3">
+        <div class="page-inner">
           <span class="chapter-label">Chapter Two</span>
           <h2>Your Laughter</h2>
           <div class="poetry-block">
@@ -70,9 +68,9 @@
         </div>
       </section>
 
-      <!-- Chapter 3: Life Together -->
-      <section class="chapter" id="chapter-3">
-        <div class="chapter-content">
+      <!-- Page 4: Chapter 3 -->
+      <section class="book-page page-4" data-page="4">
+        <div class="page-inner">
           <span class="chapter-label">Chapter Three</span>
           <h2>Life With You</h2>
           <div class="poetry-block">
@@ -94,10 +92,10 @@
         </div>
       </section>
 
-      <!-- Chapter 4: Forever -->
-      <section class="chapter chapter-light" id="chapter-4">
-        <div class="chapter-content">
-          <span class="chapter-label">The End — Or the Beginning</span>
+      <!-- Page 5: Chapter 4 -->
+      <section class="book-page page-5" data-page="5">
+        <div class="page-inner">
+          <span class="chapter-label">Chapter Four</span>
           <h2>Kanmani</h2>
           <div class="poetry-block">
             <p class="poetry">
@@ -105,29 +103,149 @@
               my precious one.<br>
               In every laugh, every tear,<br>
               every ordinary day,<br>
-              I choose you.</p>
+              I choose you.
+            </p>
           </div>
         </div>
       </section>
-    </main>
 
-    <footer class="footer">
-      <p>Made with love</p>
-    </footer>
+      <!-- Page 6: Your content -->
+      <section class="book-page page-6" data-page="6">
+        <div class="page-inner">
+          <span class="chapter-label">Chapter Five</span>
+          <h2>Your Story</h2>
+          <p class="page-placeholder">Add your story content here.</p>
+        </div>
+      </section>
+
+      <!-- Page 7 -->
+      <section class="book-page page-7" data-page="7">
+        <div class="page-inner">
+          <span class="chapter-label">Chapter Six</span>
+          <h2>Your Story</h2>
+          <p class="page-placeholder">Add your story content here.</p>
+        </div>
+      </section>
+
+      <!-- Page 8 -->
+      <section class="book-page page-8" data-page="8">
+        <div class="page-inner">
+          <span class="chapter-label">Chapter Seven</span>
+          <h2>Your Story</h2>
+          <p class="page-placeholder">Add your story content here.</p>
+        </div>
+      </section>
+
+      <!-- Page 9 -->
+      <section class="book-page page-9" data-page="9">
+        <div class="page-inner">
+          <span class="chapter-label">Chapter Eight</span>
+          <h2>Your Story</h2>
+          <p class="page-placeholder">Add your story content here.</p>
+        </div>
+      </section>
+
+      <!-- Page 10: Let's Talk -->
+      <section class="book-page page-10 section-fullpage" id="lets-talk" data-page="10">
+        <div class="page-inner">
+          <span class="chapter-label">A Question</span>
+          <h2>Let's Talk</h2>
+          <p class="talk-question">Would you like to talk?</p>
+          <div class="talk-buttons">
+            <button class="btn btn-yes" id="btn-yes">Yes</button>
+            <button class="btn btn-no" id="btn-no">No</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Garden walkway: boy & girl walk when user scrolls pages -->
+    <div class="garden-walkway" aria-hidden="true">
+      <div class="garden-path">
+        <span class="flower flower-1">🌸</span>
+        <span class="flower flower-2">🌷</span>
+        <span class="flower flower-3">🌼</span>
+      </div>
+      <div class="walkers" id="walkers">
+        <div class="walker boy" data-walker="boy">
+          <svg viewBox="0 0 60 80" class="character-svg">
+            <g class="body-group">
+              <circle cx="30" cy="18" r="14" fill="#F5D5C8" class="head"/>
+              <ellipse cx="30" cy="52" rx="16" ry="20" fill="#5B7FA3"/>
+              <rect x="16" cy="68" width="28" height="12" rx="3" fill="#4A4A4A"/>
+              <circle cx="22" cy="78" r="6" fill="#4A4A4A"/>
+              <circle cx="38" cy="78" r="6" fill="#4A4A4A"/>
+            </g>
+            <line x1="14" y1="48" x2="6" y2="62" stroke="#F5D5C8" stroke-width="5" stroke-linecap="round" class="arm arm-left"/>
+            <line x1="46" y1="48" x2="54" y2="62" stroke="#F5D5C8" stroke-width="5" stroke-linecap="round" class="arm arm-right"/>
+            <line x1="22" y1="76" x2="18" y2="92" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round" class="leg leg-left"/>
+            <line x1="38" y1="76" x2="42" y2="92" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round" class="leg leg-right"/>
+          </svg>
+        </div>
+        <div class="walker girl" data-walker="girl">
+          <svg viewBox="0 0 60 80" class="character-svg">
+            <g class="body-group">
+              <circle cx="30" cy="18" r="14" fill="#F5D5C8" class="head"/>
+              <path d="M16 38 Q30 65 44 38 L44 72 Q30 88 16 72 Z" fill="#E8B4C4"/>
+              <path d="M16 20 Q12 40 18 42 Q22 22 30 16 Q38 22 42 42 Q48 40 44 20" fill="#4A4A4A"/>
+              <circle cx="22" cy="78" r="6" fill="#F0D0D8"/>
+              <circle cx="38" cy="78" r="6" fill="#F0D0D8"/>
+            </g>
+            <line x1="14" y1="48" x2="6" y2="62" stroke="#F5D5C8" stroke-width="5" stroke-linecap="round" class="arm arm-left"/>
+            <line x1="46" y1="48" x2="54" y2="62" stroke="#F5D5C8" stroke-width="5" stroke-linecap="round" class="arm arm-right"/>
+            <line x1="22" y1="76" x2="18" y2="92" stroke="#F0D0D8" stroke-width="5" stroke-linecap="round" class="leg leg-left"/>
+            <line x1="38" y1="76" x2="42" y2="92" stroke="#F0D0D8" stroke-width="5" stroke-linecap="round" class="leg leg-right"/>
+          </svg>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Background music (add your file to assets/audio/background.mp3) -->
-  <audio id="bg-music" loop preload="auto">
-    <source src="assets/audio/background.mp3" type="audio/mpeg">
-    <source src="assets/audio/background.ogg" type="audio/ogg">
+  <!-- Background music: Munbe_Vaa plays when Begin the Story is clicked -->
+  <audio id="bg-music-top" loop preload="auto" data-track="Munbe_Vaa">
+    <source src="assets/audio/Munbe_Vaa.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="bg-music-end" loop preload="auto">
+    <source src="assets/audio/EnnaSollaPogirai.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Music toggle - fixed position -->
-  <button class="music-toggle" id="music-toggle" title="Toggle background music" aria-label="Toggle background music">
-    <span class="music-icon music-on">♪</span>
-    <span class="music-icon music-off" aria-hidden="true">♪</span>
-  </button>
+  <!-- Yes popup -->
+  <div class="popup-overlay" id="popup-yes">
+    <div class="popup-content popup-image-wrap">
+      <img src="assets/images/Cute_boy.png" alt="Cute boy" class="popup-image">
+      <button class="popup-close" id="close-yes" aria-label="Close">×</button>
+    </div>
+  </div>
 
-  <script src="script.js"></script>
+  <!-- No popup -->
+  <div class="popup-overlay" id="popup-no">
+    <div class="popup-content popup-video-wrap">
+      <video id="popup-video" controls>
+        <source src="assets/video/Nallayosinga.mp4" type="video/mp4">
+      </video>
+      <button class="popup-close" id="close-no" aria-label="Close">×</button>
+    </div>
+  </div>
+
+  <audio id="lets-talk-audio" loop preload="auto">
+    <source src="assets/audio/EnnaSollaPogirai.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="kanmaniye-audio" preload="auto">
+    <source src="assets/audio/kanmaniye.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="music-controls" id="music-controls">
+    <div class="music-volume-panel" id="music-volume-panel" aria-hidden="true">
+      <button class="volume-btn" id="volume-down" aria-label="Decrease volume">−</button>
+      <span class="volume-level" id="volume-level">50%</span>
+      <button class="volume-btn" id="volume-up" aria-label="Increase volume">+</button>
+    </div>
+    <button class="music-toggle" id="music-toggle" title="Toggle background music" aria-label="Toggle background music">
+      <span class="music-icon music-on">♪</span>
+      <span class="music-icon music-off" aria-hidden="true">♪</span>
+    </button>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
 </body>
 </html>

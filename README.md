@@ -23,6 +23,7 @@ See `DESIGN_PALETTE.md` for full design system.
    - `Munbe_Vaa.mp3` — Background at top of page (20% volume)
    - `EnnaSollaPogirai.mp3` — Background at end of page (50% volume)
    - `song.mp3` — Chapter 2 song
+   - *Free music:* [Kounine's CC0 tracks](https://bruno-simon.com/) (used in Bruno Simon's portfolio)
 3. **Video:** Place in `public/assets/video/` (e.g., `moment.mp4`)
 
 ## Run Locally

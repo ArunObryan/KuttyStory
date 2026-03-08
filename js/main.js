@@ -5,7 +5,6 @@
 
 import { initBookPageTurn } from './components/BookPageTurn.js';
 import { initStoryStart } from './components/StoryStart.js';
-import { initGardenWalkers } from './components/GardenWalkers.js';
 import { initMusicControls } from './components/MusicControls.js';
 import { initLetsTalk } from './components/LetsTalk.js';
 import { initLetsTalkAudio } from './components/LetsTalkAudio.js';
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initBookPageTurn();
   initStoryStart(musicApi);
-  initGardenWalkers();
   initLetsTalk(musicApi);
   initLetsTalkAudio(musicApi);
 });

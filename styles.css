@@ -129,6 +129,83 @@ body {
   z-index: 2;
 }
 
+/* Wide content pages — fit story within viewport (Ch 1, 5–9) */
+.page-2 .page-inner,
+.page-6 .page-inner,
+.page-7 .page-inner,
+.page-8 .page-inner,
+.page-9 .page-inner,
+.page-10:not(.section-fullpage) .page-inner {
+  max-width: 860px;
+  width: 100%;
+  padding: 1rem 2rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.page-2 .chapter-label,
+.page-6 .chapter-label,
+.page-7 .chapter-label,
+.page-8 .chapter-label,
+.page-9 .chapter-label,
+.page-10:not(.section-fullpage) .chapter-label {
+  margin-bottom: 0.4rem;
+}
+.page-2 .page-inner h2,
+.page-6 .page-inner h2,
+.page-7 .page-inner h2,
+.page-8 .page-inner h2,
+.page-9 .page-inner h2,
+.page-10:not(.section-fullpage) .page-inner h2 {
+  margin-bottom: 0.75rem;
+}
+.page-2 .poetry-block.story-block,
+.page-6 .poetry-block.story-block,
+.page-7 .poetry-block.story-block,
+.page-8 .poetry-block.story-block,
+.page-9 .poetry-block.story-block,
+.page-10:not(.section-fullpage) .poetry-block.story-block {
+  margin: 0.5rem 0;
+  padding: 1rem 1.25rem;
+}
+.page-2 .story-block,
+.page-6 .story-block,
+.page-7 .story-block,
+.page-8 .story-block,
+.page-9 .story-block,
+.page-10:not(.section-fullpage) .story-block {
+  max-width: none;
+}
+.page-2 .story-text,
+.page-6 .story-text,
+.page-7 .story-text,
+.page-8 .story-text,
+.page-9 .story-text,
+.page-10:not(.section-fullpage) .story-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+.page-2 .story-text:last-child,
+.page-6 .story-text:last-child,
+.page-7 .story-text:last-child,
+.page-8 .story-text:last-child,
+.page-9 .story-text:last-child,
+.page-10:not(.section-fullpage) .story-text:last-child {
+  margin-bottom: 0;
+}
+.page-2 .media-block,
+.page-6 .media-block,
+.page-7 .media-block,
+.page-8 .media-block,
+.page-9 .media-block,
+.page-10:not(.section-fullpage) .media-block {
+  margin: 0.5rem 0;
+}
+.page-2 .placeholder-fallback {
+  min-height: 80px;
+}
+
 .page-cover {
   padding: 4rem 2rem;
 }
@@ -243,6 +320,25 @@ body {
   line-height: 2;
 }
 
+/* Story prose — narrative text, fits page */
+.story-block {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+.story-text {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 1rem;
+  color: var(--color-indigo);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.story-text:last-child {
+  margin-bottom: 0;
+}
+
 /* ============================================
    Media Blocks
    ============================================ */
@@ -256,6 +352,39 @@ body {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(92, 75, 107, 0.15);
+}
+
+/* Click-to-view image teaser */
+.image-teaser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 140px;
+  padding: 1.5rem 2rem;
+  border: 2px dashed var(--color-magenta-purple);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, var(--color-pale-lavender) 0%, var(--color-white) 100%);
+  color: var(--color-indigo);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.image-teaser:hover {
+  border-color: var(--color-pink);
+  background: linear-gradient(135deg, var(--color-soft-pink) 0%, var(--color-white) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 180, 196, 0.3);
+}
+.image-teaser-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.image-teaser-hint {
+  font-size: 0.85rem;
+  opacity: 0.8;
 }
 
 .image-placeholder img,

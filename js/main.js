@@ -9,6 +9,7 @@ import { initMusicControls } from './components/MusicControls.js';
 import { initLetsTalk } from './components/LetsTalk.js';
 import { initLetsTalkAudio } from './components/LetsTalkAudio.js';
 import { initImagePopups } from './components/ImagePopup.js';
+import { initStoryCards } from './components/StoryCards.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const musicApi = initMusicControls();
@@ -18,4 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initLetsTalk(musicApi);
   initLetsTalkAudio(musicApi);
   initImagePopups();
+  initStoryCards();
 });

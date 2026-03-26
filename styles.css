@@ -115,7 +115,7 @@ body {
 .book-page.page-2 {
   background:
     linear-gradient(135deg, rgba(232, 224, 245, 0.7) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(230, 224, 240, 0.7) 100%),
-    url('./assets/images/ThePerfectFamily.png') center / cover no-repeat;
+    url('./public/assets/images/ThePerfectFamily.png') center / cover no-repeat;
 }
 
 .book-page::before {

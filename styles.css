@@ -73,9 +73,11 @@ body {
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: none;
   perspective: 2000px;
+  perspective-origin: center center;
   -webkit-overflow-scrolling: touch;
+  transform-style: preserve-3d;
 }
 
 .book-page {
@@ -90,16 +92,77 @@ body {
   justify-content: center;
   transform-style: preserve-3d;
   transform-origin: left center;
-  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+              box-shadow 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+              opacity 0.5s ease;
   z-index: 1;
   box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
+  backface-visibility: hidden;
+}
+
+/* Page turn animation states - forward turn */
+.book-page.turning {
+  transform: perspective(2000px) rotateY(-120deg);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  z-index: 10;
 }
 
 .book-page.turned {
-  transform: rotateY(-95deg);
+  transform: perspective(2000px) rotateY(-180deg);
   z-index: 0;
   pointer-events: none;
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  opacity: 0;
+}
+
+/* Reverse page turn animation (scrolling up) */
+.book-page.turning-back {
+  animation: turnBack 1s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  z-index: 10;
+}
+
+@keyframes turnBack {
+  0% {
+    transform: perspective(2000px) rotateY(-180deg);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: perspective(2000px) rotateY(-90deg);
+    box-shadow: -20px 0 50px rgba(0, 0, 0, 0.35);
+    opacity: 0.7;
+  }
+  100% {
+    transform: perspective(2000px) rotateY(0deg);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
+    opacity: 1;
+  }
+}
+
+/* Page fold shadow effect */
+.book-page::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(to left, 
+    rgba(0, 0, 0, 0.2) 0%, 
+    rgba(0, 0, 0, 0.08) 40%, 
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+
+.book-page.turning::after {
+  opacity: 1;
+}
+
+.book-page.turned::after {
+  opacity: 0;
 }
 
 /* Alternate page backgrounds */
@@ -116,6 +179,28 @@ body {
   background:
     linear-gradient(135deg, rgba(232, 224, 245, 0.7) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(230, 224, 240, 0.7) 100%),
     url('./public/assets/images/ThePerfectFamily.png') center / cover no-repeat;
+}
+
+/* Page 3: Chapter 2 — Cherry blossom bench memories background */
+.book-page.page-3 {
+  background:
+    linear-gradient(135deg, rgba(232, 224, 245, 0.75) 0%, rgba(255, 255, 255, 0.75) 50%, rgba(230, 224, 240, 0.75) 100%),
+    url('./public/assets/images/Chapter_2_her_memories.png') center / cover no-repeat;
+}
+
+/* Page 4: Chapter 3 — First meeting street scene background */
+.book-page.page-4 {
+  background:
+    linear-gradient(135deg, rgba(232, 224, 245, 0.7) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(230, 224, 240, 0.7) 100%),
+    url('./public/assets/images/Chapter_3_First_meet.png') center / cover no-repeat;
+}
+
+/* Page 5: Chapter 4 — Samantha tiled background */
+.book-page.page-5 {
+  background:
+    linear-gradient(135deg, rgba(232, 224, 245, 0.85) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(230, 224, 240, 0.85) 100%),
+    url('./public/assets/images/Sammantha.png') repeat;
+  background-size: auto, 480px auto;
 }
 
 .book-page::before {
@@ -704,6 +789,43 @@ body {
   text-align: center;
 }
 
+/* ============================================
+   Her Story Input Section
+   ============================================ */
+
+.her-story-input {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.story-textarea {
+  width: 60%;
+  min-height: 200px;
+  padding: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-indigo);
+  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-pale-lavender) 100%);
+  border: 2px solid var(--color-lavender);
+  border-radius: 1rem;
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.story-textarea:focus {
+  border-color: var(--color-pink);
+  box-shadow: 0 0 0 4px rgba(232, 180, 196, 0.3);
+}
+
+.story-textarea::placeholder {
+  color: var(--color-lavender);
+  font-style: italic;
+}
+
 .talk-question {
   font-size: 1.25rem;
   color: var(--color-indigo);
@@ -938,9 +1060,18 @@ body {
     font-size: 0.85rem;
   }
 
+  /* Her story textarea */
+  .story-textarea {
+    width: 90%;
+    min-height: 150px;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
   /* Talk buttons */
   .talk-buttons {
     flex-direction: column;
+    align-items: center;
     gap: 0.75rem;
   }
 
@@ -1041,6 +1172,14 @@ body {
   .story-card .story-text {
     font-size: 0.8rem;
     line-height: 1.5;
+  }
+
+  /* Her story textarea on small phones */
+  .story-textarea {
+    width: 95%;
+    min-height: 120px;
+    padding: 0.75rem;
+    font-size: 0.85rem;
   }
 
   .story-cards-nav {

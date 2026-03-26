@@ -489,20 +489,6 @@ body {
   color: var(--color-magenta-purple);
 }
 
-@media (max-width: 768px) {
-  .content-with-video {
-    flex-direction: column;
-  }
-  
-  .content-with-video .video-block {
-    flex: none;
-    width: 100%;
-    position: static;
-    order: -1;
-    margin-bottom: 1.5rem;
-  }
-}
-
 /* Reader Question */
 .reader-question {
   margin-top: 2rem;
@@ -865,6 +851,327 @@ body {
   100% {
     transform: translateY(100vh) rotate(360deg);
     opacity: 0.2;
+  }
+}
+
+/* ============================================
+   Mobile Responsive Styles
+   ============================================ */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .page-inner {
+    padding: 1.5rem 1rem;
+  }
+
+  .page-inner h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .chapter-label {
+    font-size: 0.65rem;
+  }
+
+  .poetry-block {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .story-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Content with video layout */
+  .content-with-video {
+    flex-direction: column;
+  }
+  
+  .content-with-video .video-block {
+    flex: none;
+    width: 100%;
+    position: static;
+    order: -1;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Music controls */
+  .music-controls {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .music-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .music-volume-panel {
+    padding: 0.4rem 0.6rem;
+  }
+
+  /* Story cards */
+  .story-cards {
+    max-width: 100%;
+  }
+
+  .story-card {
+    padding: 1rem 1.25rem;
+  }
+
+  .story-card .story-text {
+    font-size: 0.85rem;
+  }
+
+  /* Talk buttons */
+  .talk-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .talk-buttons .btn {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .talk-question {
+    font-size: 1rem;
+  }
+
+  /* Reader question */
+  .reader-question {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  /* Popup styles */
+  .popup-image {
+    max-width: 90vw;
+  }
+
+  .popup-close {
+    top: -35px;
+    width: 32px;
+    height: 32px;
+    font-size: 1.25rem;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(1.75rem, 12vw, 2.5rem);
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+  }
+
+  .page-inner {
+    padding: 1rem 0.75rem;
+  }
+
+  .page-2 .page-inner,
+  .page-3 .page-inner,
+  .page-4 .page-inner,
+  .page-5 .page-inner,
+  .page-6 .page-inner,
+  .page-7 .page-inner,
+  .page-8 .page-inner {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .page-inner h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .chapter-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+  }
+
+  .poetry-block {
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 0.75rem;
+  }
+
+  .story-text {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+  }
+
+  .btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  /* Video block */
+  .video-block video {
+    border-radius: 0.5rem;
+  }
+
+  .video-caption {
+    font-size: 0.8rem;
+  }
+
+  /* Story cards on mobile */
+  .story-card {
+    padding: 0.75rem 1rem;
+  }
+
+  .story-card .story-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .story-cards-nav {
+    gap: 0.4rem;
+  }
+
+  .story-cards-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .story-cards-hint {
+    font-size: 0.7rem;
+  }
+
+  /* Let's Talk section */
+  .section-fullpage {
+    padding: 2rem 1rem;
+  }
+
+  .talk-question {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Music controls compact */
+  .music-controls {
+    bottom: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .music-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .volume-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+  }
+
+  .volume-level {
+    font-size: 0.7rem;
+    min-width: 2rem;
+  }
+
+  /* Popup adjustments */
+  .popup-content {
+    max-width: 95vw;
+  }
+
+  .popup-image {
+    max-width: 95vw;
+    border-radius: 8px;
+  }
+
+  .popup-video-wrap video {
+    max-width: 95vw;
+    border-radius: 8px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .page-inner h2 {
+    font-size: 1rem;
+  }
+
+  .story-text {
+    font-size: 0.75rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .page-inner {
+    padding: 0.5rem 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-inner h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .poetry-block {
+    padding: 0.5rem 0.75rem;
+    margin: 0.25rem 0;
+  }
+
+  .story-text {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin-bottom: 0.3rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Safe area for notched phones */
+@supports (padding: max(0px)) {
+  .music-controls {
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .page-inner {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
   }
 }
 

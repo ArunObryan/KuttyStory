@@ -1004,6 +1004,34 @@ body {
 }
 
 /* ============================================
+   Final Page Section
+   ============================================ */
+
+.page-13 {
+  position: relative;
+  overflow: hidden;
+}
+
+.final-page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.final-page-image {
+  max-width: 400px;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: imagePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ============================================
    Her Story Input Section
    ============================================ */
 
@@ -1136,6 +1164,20 @@ body {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
+.popup-video-wrap.popped {
+  animation: imagePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.popup-message {
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
 .popup-close {
   position: absolute;
   top: -40px;
@@ -1187,6 +1229,82 @@ body {
   100% {
     transform: translateY(100vh) rotate(360deg);
     opacity: 0.2;
+  }
+}
+
+/* Continuous Heart Shower for Final Page */
+.heart-shower-continuous {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.heart-shower-continuous span {
+  position: absolute;
+  top: -30px;
+  color: var(--color-pink);
+  animation: heartFallSoft linear forwards;
+  text-shadow: 0 0 8px rgba(232, 180, 196, 0.6);
+}
+
+.heart-shower-continuous span:nth-child(3n) { color: var(--color-magenta-purple); }
+.heart-shower-continuous span:nth-child(5n) { color: var(--color-blush-pink); }
+.heart-shower-continuous span:nth-child(7n) { color: #ff6b9d; }
+
+@keyframes heartFallSoft {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Heart Bed at the Bottom */
+.heart-bed {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.heart-bed span {
+  position: absolute;
+  color: var(--color-pink);
+  text-shadow: 0 0 8px rgba(232, 180, 196, 0.6);
+  animation: heartLand 0.5s ease-out forwards;
+}
+
+.heart-bed span:nth-child(3n) { color: var(--color-magenta-purple); }
+.heart-bed span:nth-child(5n) { color: var(--color-blush-pink); }
+.heart-bed span:nth-child(7n) { color: #ff6b9d; }
+.heart-bed span:nth-child(11n) { color: #ff85a2; }
+
+@keyframes heartLand {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1) rotate(var(--rotation, 0deg));
   }
 }
 

@@ -2,6 +2,8 @@
  * MusicControls — Background music, volume, mute toggle
  */
 
+import { startContinuousHearts, stopContinuousHearts } from './HeartShower.js';
+
 const VOLUME_STEP = 0.1;
 const MIN_VOLUME = 0;
 const MAX_VOLUME = 1;
@@ -17,6 +19,7 @@ export function initMusicControls() {
   const chapterThreeAudio = document.getElementById('chapter-three-audio');
   const chapterFiveAudio = document.getElementById('chapter-five-audio');
   const chapterSevenAudio = document.getElementById('chapter-seven-audio');
+  const kanmaniyeAudio = document.getElementById('kanmaniye-audio');
   const toggle = document.getElementById('music-toggle');
   const volumeDown = document.getElementById('volume-down');
   const volumeUp = document.getElementById('volume-up');
@@ -33,6 +36,7 @@ export function initMusicControls() {
   let inChapterFive = false;
   let inChapterSix = false;
   let inChapterSeven = false;
+  let inFinalPage = false;
   let chapterFourVideoPlaying = false;
 
   const book = document.getElementById('book');
@@ -44,6 +48,7 @@ export function initMusicControls() {
     if (chapterThreeAudio) chapterThreeAudio.volume = volume * 0.30;
     if (chapterFiveAudio) chapterFiveAudio.volume = volume * 0.35;
     if (chapterSevenAudio) chapterSevenAudio.volume = volume * 0.5;
+    if (kanmaniyeAudio) kanmaniyeAudio.volume = volume * 0.6;
     const lt = document.getElementById('lets-talk-audio');
     if (lt) lt.volume = volume * 0.8;
     if (volumeLevel) volumeLevel.textContent = `${Math.round(volume * 100)}%`;
@@ -62,6 +67,7 @@ export function initMusicControls() {
     if (chapterThreeAudio) chapterThreeAudio.pause();
     if (chapterFiveAudio) chapterFiveAudio.pause();
     if (chapterSevenAudio) chapterSevenAudio.pause();
+    if (kanmaniyeAudio) kanmaniyeAudio.pause();
   };
 
   const pauseLetsTalkAudio = () => {
@@ -76,6 +82,18 @@ export function initMusicControls() {
   const updateMusicByScroll = () => {
     if (isMuted || inLetsTalkSection) return;
 
+    // Final page (page 13) plays kanmaniye audio
+    if (inFinalPage) {
+      audioTop.pause();
+      audioEnd.pause();
+      if (chapterTwoAudio) chapterTwoAudio.pause();
+      if (chapterThreeAudio) chapterThreeAudio.pause();
+      if (chapterFiveAudio) chapterFiveAudio.pause();
+      if (chapterSevenAudio) chapterSevenAudio.pause();
+      if (kanmaniyeAudio) kanmaniyeAudio.play().catch(() => {});
+      return;
+    }
+
     // Chapter Six (page 7) is silent - no music
     if (inChapterSix) {
       pauseAll();
@@ -89,6 +107,7 @@ export function initMusicControls() {
       if (chapterTwoAudio) chapterTwoAudio.pause();
       if (chapterThreeAudio) chapterThreeAudio.pause();
       if (chapterFiveAudio) chapterFiveAudio.pause();
+      if (kanmaniyeAudio) kanmaniyeAudio.pause();
       if (chapterSevenAudio) chapterSevenAudio.play().catch(() => {});
       return;
     }
@@ -101,6 +120,7 @@ export function initMusicControls() {
       if (chapterThreeAudio) chapterThreeAudio.pause();
       if (chapterFiveAudio) chapterFiveAudio.pause();
       if (chapterSevenAudio) chapterSevenAudio.pause();
+      if (kanmaniyeAudio) kanmaniyeAudio.pause();
       return;
     }
 
@@ -111,6 +131,7 @@ export function initMusicControls() {
       if (chapterThreeAudio) chapterThreeAudio.pause();
       if (chapterFiveAudio) chapterFiveAudio.pause();
       if (chapterSevenAudio) chapterSevenAudio.pause();
+      if (kanmaniyeAudio) kanmaniyeAudio.pause();
       if (chapterTwoAudio) chapterTwoAudio.play().catch(() => {});
       return;
     }
@@ -122,6 +143,7 @@ export function initMusicControls() {
       if (chapterTwoAudio) chapterTwoAudio.pause();
       if (chapterFiveAudio) chapterFiveAudio.pause();
       if (chapterSevenAudio) chapterSevenAudio.pause();
+      if (kanmaniyeAudio) kanmaniyeAudio.pause();
       if (chapterThreeAudio) chapterThreeAudio.play().catch(() => {});
       return;
     }
@@ -133,6 +155,7 @@ export function initMusicControls() {
       if (chapterTwoAudio) chapterTwoAudio.pause();
       if (chapterThreeAudio) chapterThreeAudio.pause();
       if (chapterSevenAudio) chapterSevenAudio.pause();
+      if (kanmaniyeAudio) kanmaniyeAudio.pause();
       if (chapterFiveAudio) chapterFiveAudio.play().catch(() => {});
       return;
     }
@@ -144,6 +167,7 @@ export function initMusicControls() {
     if (chapterThreeAudio) chapterThreeAudio.pause();
     if (chapterFiveAudio) chapterFiveAudio.pause();
     if (chapterSevenAudio) chapterSevenAudio.pause();
+    if (kanmaniyeAudio) kanmaniyeAudio.pause();
     audioTop.play().catch(() => {});
   };
 
@@ -249,6 +273,30 @@ export function initMusicControls() {
         { root: book, threshold: 0.5 }
       );
       chapterSevenObserver.observe(chapterSevenPage);
+    }
+
+    // Observe Final Page (page 13) to trigger kanmaniye.mp3 and heart shower
+    const finalPage = document.querySelector('.book-page[data-page="13"]');
+    if (finalPage) {
+      const finalPageObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const wasInFinalPage = inFinalPage;
+            inFinalPage = entry.isIntersecting && entry.intersectionRatio > 0.5;
+            
+            // Start/stop heart shower based on visibility
+            if (inFinalPage && !wasInFinalPage) {
+              startContinuousHearts(finalPage);
+            } else if (!inFinalPage && wasInFinalPage) {
+              stopContinuousHearts();
+            }
+            
+            updateMusicByScroll();
+          });
+        },
+        { root: book, threshold: 0.5 }
+      );
+      finalPageObserver.observe(finalPage);
     }
 
     // Observe Chapter Four (page 5) for video pause/resume

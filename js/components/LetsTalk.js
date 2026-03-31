@@ -13,6 +13,7 @@ export function initLetsTalk(musicApi) {
   const closeNo = document.getElementById('close-no');
   const kanmaniyeAudio = document.getElementById('kanmaniye-audio');
   const popupVideo = document.getElementById('popup-video');
+  const popupYesVideo = document.getElementById('popup-yes-video');
 
   if (!btnYes || !btnNo || !popupYes || !popupNo) return;
 
@@ -26,10 +27,14 @@ export function initLetsTalk(musicApi) {
       kanmaniyeAudio.currentTime = 0;
       kanmaniyeAudio.play().catch(() => {});
     }
-    const imageWrap = popupYes.querySelector('.popup-image-wrap');
-    if (imageWrap) imageWrap.classList.remove('popped');
+    const videoWrap = popupYes.querySelector('.popup-video-wrap');
+    if (videoWrap) videoWrap.classList.remove('popped');
     popupYes.classList.add('show');
-    requestAnimationFrame(() => imageWrap?.classList.add('popped'));
+    requestAnimationFrame(() => videoWrap?.classList.add('popped'));
+    if (popupYesVideo) {
+      popupYesVideo.currentTime = 0;
+      popupYesVideo.play().catch(() => {});
+    }
   };
 
   const showNoPopup = () => {
@@ -44,6 +49,7 @@ export function initLetsTalk(musicApi) {
   const closeYesPopup = () => {
     popupYes.classList.remove('show');
     kanmaniyeAudio?.pause();
+    popupYesVideo?.pause();
     resumeMusic();
   };
 

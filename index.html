@@ -20,8 +20,8 @@
           <div class="corner-ornament top-right"></div>
           <div class="corner-ornament bottom-left"></div>
           <div class="corner-ornament bottom-right"></div>
-          <h1 class="hero-title">Kanmani</h1>
-          <p class="hero-subtitle">Let me tell kutty story ...</p>
+          <h1 class="hero-title">கண்மணி</h1>
+          <p class="hero-subtitle">Let me tell a kutty story ...</p>
           <button class="btn btn-primary" id="start-story">Begin the Story</button>
         </div>
       </section>
@@ -195,7 +195,7 @@
       <section class="book-page page-8" data-page="8">
         <div class="page-inner">
           <span class="chapter-label">Chapter Seven</span>
-          <h2>Vaalvin Azhagiyal</h2>
+          <h2>வாழ்வின் அழகியல்</h2>
           <div class="story-cards" id="story-cards">
             <div class="story-cards-wrapper">
               <div class="story-card">
@@ -306,6 +306,15 @@
           </div>
         </div>
       </section>
+
+      <!-- Page 13: Final Page -->
+      <section class="book-page page-13 section-fullpage" id="final-page" data-page="13">
+        <div class="page-inner final-page-content">
+          <span class="chapter-label">Kanmaniye... this is for you</span>
+          <img src="./public/assets/images/Cute_boy.png" alt="Cute boy" class="final-page-image">
+        </div>
+      </section>
+
     </div>
   </div>
 
@@ -319,8 +328,11 @@
 
   <!-- Yes popup -->
   <div class="popup-overlay" id="popup-yes">
-    <div class="popup-content popup-image-wrap">
-      <img src="./public/assets/images/Cute_boy.png" alt="Cute boy" class="popup-image">
+    <div class="popup-content popup-video-wrap">
+      <p class="popup-message">Shall we go on a date?</p>
+      <video id="popup-yes-video" controls playsinline>
+        <source src="./public/assets/video/Cute_Date.mp4" type="video/mp4">
+      </video>
       <button class="popup-close" id="close-yes" aria-label="Close">×</button>
     </div>
   </div>
@@ -358,7 +370,7 @@
   <audio id="chapter-seven-audio" loop preload="auto">
     <source src="./public/assets/audio/YeTuneKyaKiya.mp3" type="audio/mpeg">
   </audio>
-  <audio id="kanmaniye-audio" preload="auto">
+  <audio id="kanmaniye-audio" loop preload="auto">
     <source src="./public/assets/audio/kanmaniye.mp3" type="audio/mpeg">
   </audio>
 

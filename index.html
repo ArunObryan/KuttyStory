@@ -204,7 +204,8 @@
           <h2>What she said to him ?</h2>
           <div class="poetry-block story-block">
             <p class="story-text">
-              There were many people around us who believed we would end up together. They look cute together.To be honest, he was never one of them.
+              There were many people around them who believed they would end up together. So many had said they looked cute as a
+              couple. To be honest, he was never one of them.
             </p>
             <p class="story-text">
               When she once told him that she might get married next year, if everything went right, he believed her. And in that moment, he sincerely hoped her dream would come true.
@@ -313,16 +314,16 @@
         </div>
       </section>
 
-            <!-- Page 9: Chapter Her-->
-            <section class="book-page page-9 section-fullpage" id="chapter-her" data-page="9">
-              <div class="page-inner">
-                <span class="chapter-label">Her</span>
-                <h2>It's time for her story. Let her fill this space...</h2>
-                <div class="her-story-input">
-                  <textarea id="her-story-text" class="story-textarea" placeholder="Write your story here..." rows="10"></textarea>
-                </div>
-              </div>
-            </section>
+      <!-- Page 9: Chapter Her -->
+      <section class="book-page page-9 section-fullpage" id="chapter-her" data-page="9">
+        <div class="page-inner">
+          <span class="chapter-label">Her</span>
+          <h2>It's time for her story. Let her fill this space...</h2>
+          <div class="her-story-input">
+            <textarea id="her-story-text" class="story-textarea" placeholder="Write your story here..." rows="10"></textarea>
+          </div>
+        </div>
+      </section>
 
       <!-- Page 12: Let's Talk -->
       <section class="book-page page-12 section-fullpage" id="lets-talk" data-page="12">
@@ -344,6 +345,8 @@
         <div class="page-inner final-page-content">
           <span class="chapter-label">Kanmaniye... this is for you</span>
           <img src="./public/assets/images/Cute_boy.png" alt="Cute boy" class="final-page-image">
+          <p class="reader-question">We will know once she tells her story.</p>
+          <p class="reader-question">To be continued...</p>
         </div>
       </section>
 
@@ -372,7 +375,7 @@
   <!-- No popup -->
   <div class="popup-overlay" id="popup-no">
     <div class="popup-content popup-video-wrap">
-      <video id="popup-video" controls>
+      <video id="popup-video" controls playsinline>
         <source src="./public/assets/video/Thalapathi_BGM.mp4" type="video/mp4">
       </video>
       <button class="popup-close" id="close-no" aria-label="Close">×</button>
@@ -405,6 +408,12 @@
   <audio id="kanmaniye-audio" loop preload="auto">
     <source src="./public/assets/audio/kanmaniye.mp3" type="audio/mpeg">
   </audio>
+
+  <div class="page-nav" id="page-nav">
+    <button class="nav-btn nav-prev" id="nav-prev" aria-label="Previous page">‹</button>
+    <span class="nav-indicator" id="nav-indicator">1 / 11</span>
+    <button class="nav-btn nav-next" id="nav-next" aria-label="Next page">›</button>
+  </div>
 
   <div class="music-controls" id="music-controls">
     <div class="music-volume-panel" id="music-volume-panel" aria-hidden="true">

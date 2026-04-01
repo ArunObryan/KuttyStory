@@ -6,12 +6,16 @@
 export function initBookPageTurn() {
   const book = document.getElementById('book');
   const pages = document.querySelectorAll('.book-page');
-  if (!book || !pages.length) return;
+  if (!book || !pages.length) return null;
 
   let currentPageIndex = 0;
   let isAnimating = false;
   const ANIMATION_DURATION = 1000;
   const pageHeight = window.innerHeight;
+  const totalPages = pages.length;
+
+  // Callback for page change notifications
+  let onPageChangeCallback = null;
 
   // Prevent default scroll, handle animation manually
   function handleWheel(e) {
@@ -58,6 +62,7 @@ export function initBookPageTurn() {
       });
       
       currentPageIndex = toIndex;
+      notifyPageChange();
     }, ANIMATION_DURATION / 2);
 
     // Animation complete
@@ -80,6 +85,7 @@ export function initBookPageTurn() {
     });
     
     currentPageIndex = toIndex;
+    notifyPageChange();
 
     // Animation complete
     setTimeout(() => {
@@ -155,4 +161,43 @@ export function initBookPageTurn() {
       }
     }
   });
+
+  // Notify callback of page changes
+  function notifyPageChange() {
+    if (onPageChangeCallback) {
+      onPageChangeCallback(currentPageIndex, totalPages);
+    }
+  }
+
+  // Public API for navigation
+  function goToNext() {
+    if (isAnimating) return false;
+    const nextIndex = currentPageIndex + 1;
+    if (nextIndex < pages.length) {
+      isAnimating = true;
+      turnPageForward(currentPageIndex, nextIndex);
+      return true;
+    }
+    return false;
+  }
+
+  function goToPrev() {
+    if (isAnimating) return false;
+    const prevIndex = currentPageIndex - 1;
+    if (prevIndex >= 0) {
+      isAnimating = true;
+      turnPageBackward(currentPageIndex, prevIndex);
+      return true;
+    }
+    return false;
+  }
+
+  // Return navigation API
+  return {
+    goToNext,
+    goToPrev,
+    getCurrentPage: () => currentPageIndex,
+    getTotalPages: () => totalPages,
+    onPageChange: (callback) => { onPageChangeCallback = callback; }
+  };
 }

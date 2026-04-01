@@ -725,6 +725,8 @@ body {
   display: flex;
   transition: transform 0.4s ease-out;
   touch-action: pan-x;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .story-card {
@@ -922,6 +924,77 @@ body {
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.8; }
+}
+
+/* ============================================
+   Page Navigation Controls
+   ============================================ */
+
+.page-nav {
+  position: fixed;
+  bottom: 9rem;
+  right: 1.5rem;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 2rem;
+  border: 1px solid rgba(155, 139, 184, 0.3);
+  box-shadow: 0 4px 20px rgba(92, 75, 107, 0.15);
+}
+
+.nav-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(232, 224, 245, 0.8);
+  color: var(--color-indigo);
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-btn:hover {
+  background: var(--color-pink);
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+/* Active state for mobile touch feedback */
+.nav-btn:active {
+  background: var(--color-pink);
+  color: var(--color-white);
+  transform: scale(0.95);
+}
+
+.nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.nav-btn:disabled:hover {
+  background: rgba(232, 224, 245, 0.8);
+  color: var(--color-indigo);
+}
+
+.nav-indicator {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-indigo);
+  min-width: 3rem;
+  text-align: center;
 }
 
 /* ============================================
@@ -1393,6 +1466,24 @@ body {
     margin-bottom: 1.5rem;
   }
 
+  /* Page navigation */
+  .page-nav {
+    bottom: 7.5rem;
+    right: 1rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .nav-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  .nav-indicator {
+    font-size: 0.7rem;
+    min-width: 2.5rem;
+  }
+
   /* Music controls */
   .music-controls {
     bottom: 1rem;
@@ -1567,6 +1658,24 @@ body {
     margin-bottom: 1rem;
   }
 
+  /* Page navigation compact */
+  .page-nav {
+    bottom: 6.5rem;
+    right: 0.75rem;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .nav-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+  }
+
+  .nav-indicator {
+    font-size: 0.65rem;
+    min-width: 2rem;
+  }
+
   /* Music controls compact */
   .music-controls {
     bottom: 0.75rem;
@@ -1665,6 +1774,11 @@ body {
 
 /* Safe area for notched phones */
 @supports (padding: max(0px)) {
+  .page-nav {
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(9rem, calc(9rem + env(safe-area-inset-bottom)));
+  }
+
   .music-controls {
     right: max(1rem, env(safe-area-inset-right));
     bottom: max(1rem, env(safe-area-inset-bottom));

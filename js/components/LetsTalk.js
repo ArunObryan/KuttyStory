@@ -23,10 +23,6 @@ export function initLetsTalk(musicApi) {
   const showYesPopup = () => {
     showerHearts();
     pauseMusic();
-    if (kanmaniyeAudio) {
-      kanmaniyeAudio.currentTime = 0;
-      kanmaniyeAudio.play().catch(() => {});
-    }
     const videoWrap = popupYes.querySelector('.popup-video-wrap');
     if (videoWrap) videoWrap.classList.remove('popped');
     popupYes.classList.add('show');
@@ -48,7 +44,6 @@ export function initLetsTalk(musicApi) {
 
   const closeYesPopup = () => {
     popupYes.classList.remove('show');
-    kanmaniyeAudio?.pause();
     popupYesVideo?.pause();
     resumeMusic();
   };

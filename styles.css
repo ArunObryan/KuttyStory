@@ -203,6 +203,36 @@ body {
   background-size: auto, 480px auto;
 }
 
+/* Page 6: Chapter 5 — Life stages tiled background */
+.book-page.page-6 {
+  position: relative;
+  background: linear-gradient(135deg, var(--color-pale-lavender) 0%, var(--color-white) 50%, var(--color-soft-lavender) 100%);
+}
+
+.book-page.page-6 .life-stages-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  opacity: 0.15;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.book-page.page-6 .life-stages-bg img {
+  width: 20%;
+  height: 20%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.book-page.page-6 .page-inner {
+  position: relative;
+  z-index: 2;
+}
+
 .book-page::before {
   content: '';
   position: absolute;

@@ -42,3 +42,20 @@ Then open http://localhost:3000
 | `npm run dev` | Start development server with HMR |
 | `npm run build` | Build for production (output in `dist/`) |
 | `npm run preview` | Preview production build locally |
+| `npm test` | Run all Playwright tests |
+| `npm run test:ui` | Interactive UI mode |
+| `npm run test:headed` | See browser while testing |
+| `npm run test:debug` | Debug mode |
+
+## Testing
+
+Full E2E test suite using Playwright covering:
+- Page navigation & animations
+- Audio/music controls
+- Video popups
+- Story cards carousel
+- Form inputs
+- Mobile responsiveness
+- Accessibility
+
+See [tests/README.md](tests/README.md) for detailed documentation.
